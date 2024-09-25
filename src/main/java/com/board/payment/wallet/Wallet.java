@@ -1,9 +1,6 @@
 package com.board.payment.wallet;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,6 +13,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Entity
 @Getter
+@Table(name = "wallet", indexes = @Index(name = "idx_created_at", columnList = "createdAt"))
 public class Wallet {
 
     @Id

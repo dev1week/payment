@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.annotations.processing.Find;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 
@@ -15,11 +16,11 @@ public class WalletService {
 
     private final WalletRepository walletRepository;
 
-
+    @Transactional
     public CreateWalletResponse createWallet(CreateWalletRequest request) {
 
 
-        boolean isWalletExist = walletRepository.existsById(request.userId());
+        boolean isWalletExist = walletRepository.existsByUserId(request.userId());
         if (isWalletExist) {
             throw new RuntimeException("이미 지갑이 존재합니다.");
         }
