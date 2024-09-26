@@ -35,4 +35,35 @@ public class Transaction {
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+
+
+    public static Transaction createChargeTransaction(
+        Long userId, Long walletId, String orderId,
+        BigDecimal amount)
+    {
+        Transaction transaction = new Transaction();
+        transaction.setUserId(userId);
+        transaction.setWalletId(walletId);
+        transaction.setOrderId(orderId);
+        transaction.setTransactionType(TransactionType.CHARGE);
+        transaction.setDescription("충전");
+        transaction.setAmount(amount);
+
+        return transaction;
+    }
+
+    public static Transaction createPaymentTransaction(
+            Long userId, Long walletId, String courseId,
+            BigDecimal amount)
+    {
+        Transaction transaction = new Transaction();
+        transaction.setUserId(userId);
+        transaction.setWalletId(walletId);
+        transaction.setOrderId(courseId);
+        transaction.setTransactionType(TransactionType.PAYMENT);
+        transaction.setDescription(courseId+"결제");
+        transaction.setAmount(amount);
+
+        return transaction;
+    }
 }

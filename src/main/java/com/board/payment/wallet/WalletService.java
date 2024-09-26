@@ -31,7 +31,11 @@ public class WalletService {
 
 
     public FindWalletResponse findWalletByUserId(long userId) {
-        return walletRepository.findById(userId).map(wallet-> new FindWalletResponse(wallet.getId(), wallet.getUserId(), wallet.getBalance(), wallet.getCreatedAt(), wallet.getUpdatedAt())).orElse(null);
+        return walletRepository.findByUserId(userId).map(wallet-> new FindWalletResponse(wallet.getId(), wallet.getUserId(), wallet.getBalance(), wallet.getCreatedAt(), wallet.getUpdatedAt())).orElse(null);
+    }
+
+    public FindWalletResponse findWalletByWalletId(long walletId) {
+        return walletRepository.findById(walletId).map(wallet-> new FindWalletResponse(wallet.getId(), wallet.getUserId(), wallet.getBalance(), wallet.getCreatedAt(), wallet.getUpdatedAt())).orElse(null);
     }
 
 
